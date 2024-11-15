@@ -1,0 +1,33 @@
+import java.util.Stack;
+import java.util.Arrays;
+public class previousSmallerElement {
+  
+    public static void main(String[] args) {
+        int[] arr = {4,5,2,10,8};
+        int[] ans = previousSmallerElements(arr);
+       System.out.println(Arrays.toString(ans));
+    //    The method Arrays.toString() in Java is a utility method provided by the java.util.Arrays class,
+    //  and it is used to convert an array into a human-readable string representation of its elements.
+    }
+
+
+public static int[] previousSmallerElements(int[] arr){
+    int n = arr.length;
+    int[] result = new int[arr.length];
+     Stack<Integer> st = new Stack<>();
+    for(int i = 0 ; i< n ; i++){
+        while(!st.isEmpty() && st.peek() >= arr[i]){
+            st.pop();
+        }
+        if(st.isEmpty()){
+            result[i] = -1;
+        }
+        else{
+            result[i] = st.peek();
+        }
+        st.push(arr[i]);
+    }
+    return result;
+    
+}
+}
